@@ -1,0 +1,89 @@
+﻿<div id="chart" style="width: 900px; height: 500px;"></div>
+
+<script>
+var applySelection = kendo.dataviz.Navigator.fn.applySelection;
+kendo.dataviz.Navigator.fn.applySelection = function() {
+    // TODO: Expose select events
+    var navi = this;
+    var chart = navi.chart;
+
+        applySelection.call(navi);
+
+    var select = this.options.select;
+    console.log(select.from, select.to)
+//    chart.dataSource.transport.options.read.data = {};
+//    chart.dataSource.filter([
+//        { field: "Date", operator: "gt", value: select.from },
+//        { field: "Date", operator: "lt", value: select.to || new Date() }
+//    ]);
+};
+
+ $("#chart").kendoStockChart({
+    dataSource: {
+        transport: {
+            read: {
+                url: "@Url.Action("StockData", "Home")",
+                contentType: "application/json",
+                type: "POST",
+                data: {
+                    unit: "months",
+                }
+            },
+            parameterMap: function(data) {
+                return JSON.stringify(data)
+            }
+        },
+        schema:{ 
+            model: {
+                fields: {
+                    Date: {
+                        type: "date"
+                    }
+                }
+            }
+        },
+        serverFiltering: true
+    },
+    dateField: "Date",
+    panes: [{
+        title: "Value"
+    }, {
+        name: "volumePane",
+        title: "Volume",
+        height: 100 // pixels
+    }],
+    categoryAxis: {
+        pane: "volumePane"
+    },
+    valueAxes: [{
+        // Default axis
+        name: "price"
+    }, {
+        name: "volume",
+        pane: "volumePane",
+        visible: false
+    }],
+    series: [{
+        type: "candlestick",
+        openField: "Open",
+        highField: "High",
+        lowField: "Low",
+        closeField: "Close",
+        // TODO: Shouldn't be necessary
+        axis: "price"
+    }, {
+        type: "bar",
+        field: "Volume",
+        axis: "volume"
+    }],
+    navigator: {
+        series: {
+            type: "area",
+            field: "High"
+        },
+        select: {
+            from: "2011/10/05"
+        }
+    }
+});
+</script>

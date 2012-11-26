@@ -1,0 +1,32 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<title>Load on Demand - Stock Chart</title>
+	<link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />
+	<link href="@Url.Content("~/Content/kendo/2012.3.1114/kendo.common.min.css")" rel="stylesheet" type="text/css" />
+	<link href="@Url.Content("~/Content/kendo/2012.3.1114/kendo.dataviz.min.css")" rel="stylesheet" type="text/css" />
+	<link href="@Url.Content("~/Content/kendo/2012.3.1114/kendo.dataviz.default.min.css")" rel="stylesheet" type="text/css" />
+	<link href="@Url.Content("~/Content/kendo/2012.3.1114/kendo.default.min.css")" rel="stylesheet" type="text/css" />
+	<script src="@Url.Content("~/Scripts/kendo/2012.3.1114/jquery.min.js")"></script>
+	<!-- <script src="@Url.Content("~/Scripts/kendo/2012.3.1114/kendo.all.min.js")"></script> -->
+	<!-- <script src="@Url.Content("~/Scripts/kendo/2012.3.1114/kendo.aspnetmvc.min.js")"></script> -->
+    <script src="http://tsonev/kendo/src/kendo.core.js"></script>
+    <script src="http://tsonev/kendo/src/kendo.data.js"></script>
+    <script src="http://tsonev/kendo/src/kendo.dataviz.core.js"></script>
+    <script src="http://tsonev/kendo/src/kendo.dataviz.chart.js"></script>
+    <script src="http://tsonev/kendo/src/kendo.dataviz.stock.js"></script>
+    <script src="http://tsonev/kendo/src/kendo.dataviz.themes.js"></script>
+    <script src="http://tsonev/kendo/src/kendo.dataviz.vml.js"></script>
+    <script src="http://tsonev/kendo/src/kendo.dataviz.svg.js"></script>
+    <script src="http://tsonev/kendo/src/kendo.userevents.js"></script>
+    <script src="http://tsonev/kendo/src/kendo.aspnetmvc.js"></script>
+</head>
+
+<body>
+	<div class="page">
+		<section id="main">
+			@RenderBody()
+		</section>
+	</div>
+</body>
+</html>
